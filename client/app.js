@@ -17,30 +17,40 @@ angular.module('minibeat', ['ui.router'])
 	})
 	.controller('MiniBeatCtrl', function($scope, $http, Chart) {
 		
-		// var worker = new Worker('worker.js');
-		// worker.postMessage('');	
-		// worker.addEventListener('updateChart', function(e) {
-		//      console.log(e.data);
-		//      // $scope.chart = e.data;
-		// }, false);
 
 		Chart.getChart().then(function(data) {
 			$scope.chart = data;
 			// console.log($scope.chart);
 		});
 
-		setInterval(function(){
-			Chart.getChart().then(function(data) {
-				$scope.chart = data;
-			})
-		}, 1000);
+		var worker = new Worker('worker.js');
+		worker.postMessage();	
+		worker.addEventListener('message', function(e) {
+		     // console.log(e.data);
+		     $scope.chart = JSON.parse(e.data);
+		     $scope.$apply();
+		}, false);
+		// setInterval(function(){
+		// 	Chart.getChart().then(function(data) {
+		// 		$scope.chart = data;
+		// 	})
+		// }, 1000);
 	})
 	.controller('MiniBeatDetailCtrl', function($scope, $stateParams, Chart) {
 		$scope.currPage = $scope.chart.pages[$stateParams.index-1];
-		setInterval(function(){
-			Chart.getChart().then(function(data) {
-				var chart = data;
-				$scope.currPage = chart.pages[$stateParams.index-1];
-			})
-		}, 1000);
+
+		var worker = new Worker('worker.js');
+		worker.postMessage();
+		worker.addEventListener('message', function(e) {
+		     // console.log(e.data);
+		     var chart = JSON.parse(e.data);
+		     $scope.currPage = chart.pages[$stateParams.index-1];
+		     $scope.$apply();
+		}, false);
+		// setInterval(function(){
+		// 	Chart.getChart().then(function(data) {
+		// 		var chart = data;
+		// 		$scope.currPage = chart.pages[$stateParams.index-1];
+		// 	})
+		// }, 1000);
 	});

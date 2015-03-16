@@ -1,11 +1,20 @@
-addEventListener('updateChart', function() {
-	makeCall();
-    postMessage('Im reading Tech.pro');
-}, false);
-
+var timer;
+var chart;
 function makeCall() {
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', 'http://api.chartbeat.com/live/toppages/v3/?apikey=317a25eccba186e0f6b558f45214c0e7&host=gizmodo.com', false);
 	xhr.send();
-	console.log(xhr.responseText);
+	return xhr.responseText;
 }
+
+function update() {
+	self.postMessage(makeCall());
+	timer = setTimeout(update, 1000);
+}
+
+self.addEventListener('message', function(e) {
+	console.log(e.data);
+	if(timer) clearTimeout(timer);
+	chart = e.data;
+	update();
+}, false);
