@@ -9,7 +9,6 @@ var chart = {};
 var router = express.Router();
 
 router.get('/', function(req, res) {
-	console.log('in here');
 	http.request(options, function(response) {
 		var str = '';
 		response.on('data', function(chunk) {
@@ -18,10 +17,10 @@ router.get('/', function(req, res) {
 
 		response.on('end', function() {
 			chart = JSON.parse(str);
+			res.send(chart);
 
 		});
 	}).end();
-	res.send(chart);
 	// res.render('exercise', {chart: chart});
 });
 
