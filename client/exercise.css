@@ -1,3 +1,49 @@
 body {
-  
+  background: #f4f2f2;
 }
+
+h1 {
+	font-family: Veranda, sans-serif;
+	font-size: 3em;
+}
+
+h2 {
+	font-family: Veranda, sans-serif;
+	font-size: 2em;
+}
+
+li {
+	list-style: none;
+	font-family: Helvetica, sans-serif;
+	margin-bottom: 15px;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:visited {
+	color: black;
+}
+
+.detail {
+	float: left;
+	max-width: 100%;
+	overflow: hidden;
+}
+
+.detail-container {
+	width: 100%;
+	margin-left: 80px;
+}
+
+.detail-title {
+	font-family: Veranda, sans-serif;
+	font-size: 1.2em;
+}
+
+.pages {
+	float: left;
+}
+
+

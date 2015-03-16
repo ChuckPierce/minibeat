@@ -20,7 +20,6 @@ angular.module('minibeat', ['ui.router'])
 
 		Chart.getChart().then(function(data) {
 			$scope.chart = data;
-			// console.log($scope.chart);
 		});
 
 		// var worker = new Worker('worker.js');

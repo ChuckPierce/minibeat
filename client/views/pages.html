@@ -1,6 +1,11 @@
 <h1><a href="/">Mini-Beat</a></h1>
-	<div ng-repeat="page in chart.pages | orderBy: page.stats.people">
-		<li><a ui-sref=".detail({index: {{$index + 1}} })">{{page.title}} - {{page.stats.people}}</a></li>
+<hr>
+<div class="pages">
+		<ul>
+			<li ng-repeat="page in chart.pages | orderBy: page.stats.people">
+				<a ui-sref=".detail({index: {{$index + 1}} })">{{page.title}} - {{page.stats.people}}</a>
+			</li>
+		</ul>
 	</div>
+	<div ui-view=""></div>
 </div>
-<div ui-view=""></div>
