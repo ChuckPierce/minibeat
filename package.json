@@ -2,15 +2,16 @@
   "name": "waywire_exercise",
   "version": "1.0.0",
   "description": "Web worker exercise",
-  "main": "exercise.js",
+  "main": "server/exercise.js",
   "scripts": {
-    "start": "nodemon exercise.js"
+    "start": "nodemon server/exercise.js -e js,html"
   },
   "author": "Chuck Pierce",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.12.0",
     "express": "^4.12.2",
-    "swig": "^1.4.2"
+    "swig": "^1.4.2",
+    "webworker": "^0.8.4"
   }
 }
