@@ -7,13 +7,15 @@ angular.module('minibeat')
 			});
 		}
 		return {
-			value: chart,
 			getChart: function() {
 				var def = $q.defer();
 				$http.get('/chart').success(function(data) {
 					def.resolve(data);
 				});
 				return def.promise;
-		}
+			},
+			setChart: function(data) {
+				chart = data;
+			}
 	};
 	});

@@ -21,7 +21,6 @@ router.get('/', function(req, res) {
 
 		});
 	}).end();
-	// res.render('exercise', {chart: chart});
 });
 
 module.exports = router;

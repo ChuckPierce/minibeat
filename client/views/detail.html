@@ -1,4 +1,4 @@
 <div>
 	<h2>{{currPage.title}}</h2>
-	<li ng-repeat="topref in currPage.stats.toprefs">{{topref.domain}} --- {{topref.visitors}}</li>
+	<li ng-repeat="topref in currPage.stats.toprefs | orderBy: topref.visitors">{{topref.domain}} --- {{topref.visitors}}</li>
 </div>
