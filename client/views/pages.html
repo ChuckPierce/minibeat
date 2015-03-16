@@ -1,0 +1,6 @@
+<h1>Mini-Beat</h1>
+	<div ng-repeat="page in chart.pages">
+		<li><a ui-sref=".detail({index: {{$index + 1}} })">{{page.title}} - {{page.stats.people}}</a></li>
+	</div>
+</div>
+<div ui-view=""></div>
