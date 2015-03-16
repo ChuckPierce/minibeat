@@ -1,4 +1,4 @@
-<h1>Mini-Beat</h1>
+<h1><a href="/">Mini-Beat</a></h1>
 	<div ng-repeat="page in chart.pages | orderBy: page.stats.people">
 		<li><a ui-sref=".detail({index: {{$index + 1}} })">{{page.title}} - {{page.stats.people}}</a></li>
 	</div>

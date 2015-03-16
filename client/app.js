@@ -7,7 +7,7 @@ angular.module('minibeat', ['ui.router'])
 			controller: 'MiniBeatCtrl'
 		})
 		.state('home.detail', {
-			url: ':index',
+			url: 'detail/:index',
 			templateUrl: 'views/detail.html',
 			controller: 'MiniBeatDetailCtrl'
 		});
@@ -23,34 +23,28 @@ angular.module('minibeat', ['ui.router'])
 			// console.log($scope.chart);
 		});
 
-		var worker = new Worker('worker.js');
-		worker.postMessage();	
-		worker.addEventListener('message', function(e) {
-		     // console.log(e.data);
-		     $scope.chart = JSON.parse(e.data);
-		     $scope.$apply();
-		}, false);
-		// setInterval(function(){
-		// 	Chart.getChart().then(function(data) {
-		// 		$scope.chart = data;
-		// 	})
-		// }, 1000);
+		// var worker = new Worker('worker.js');
+		// worker.postMessage();	
+		// worker.addEventListener('message', function(e) {
+		//      $scope.chart = JSON.parse(e.data);
+		//      $scope.$apply();
+		// }, false);
 	})
 	.controller('MiniBeatDetailCtrl', function($scope, $stateParams, Chart) {
-		$scope.currPage = $scope.chart.pages[$stateParams.index-1];
+		if(!$scope.chart)  {
+			Chart.getChart().then(function(data) { 
+			$scope.chart = data;
+			$scope.currPage = $scope.chart.pages[$stateParams.index-1];
+			});
+		} else {
+			$scope.currPage = $scope.chart.pages[$stateParams.index-1];
+		}
 
-		var worker = new Worker('worker.js');
-		worker.postMessage();
-		worker.addEventListener('message', function(e) {
-		     // console.log(e.data);
-		     var chart = JSON.parse(e.data);
-		     $scope.currPage = chart.pages[$stateParams.index-1];
-		     $scope.$apply();
-		}, false);
-		// setInterval(function(){
-		// 	Chart.getChart().then(function(data) {
-		// 		var chart = data;
-		// 		$scope.currPage = chart.pages[$stateParams.index-1];
-		// 	})
-		// }, 1000);
+		// var worker = new Worker('worker.js');
+		// worker.postMessage();
+		// worker.addEventListener('message', function(e) {
+		//      var chart = JSON.parse(e.data);
+		//      $scope.currPage = chart.pages[$stateParams.index-1];
+		//      $scope.$apply();
+		// }, false);
 	});
