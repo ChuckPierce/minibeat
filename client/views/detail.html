@@ -3,6 +3,6 @@
 		<hr>
 		<p class="detail-title">{{currPage.title}}</p>
 		<li ng-repeat="topref in currPage.stats.toprefs | orderBy: topref.visitors">Domain: <strong>{{topref.domain}}</strong>
-			<p>Hits: {{topref.visitors}}</p>
+			<p>Visitors: {{topref.visitors}}</p>
 		</li>
 	</div>
