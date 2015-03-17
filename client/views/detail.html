@@ -1,8 +1,8 @@
-<div class="detail">
 	<div class="detail-container">
-		<h2>Page Detail</h2>
+	<h2>Page Detail</h2>
 		<hr>
 		<p class="detail-title">{{currPage.title}}</p>
-		<li ng-repeat="topref in currPage.stats.toprefs | orderBy: topref.visitors">{{topref.domain}} --- {{topref.visitors}}</li>
+		<li ng-repeat="topref in currPage.stats.toprefs | orderBy: topref.visitors">Domain: <strong>{{topref.domain}}</strong>
+			<p>Hits: {{topref.visitors}}</p>
+		</li>
 	</div>
-</div>
